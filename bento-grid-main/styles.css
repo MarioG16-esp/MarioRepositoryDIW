@@ -1,0 +1,510 @@
+/* =========================
+   FUENTES
+   ========================= */
+
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url("./assets/fonts/DMSans-VariableFont_opszwght.woff") format("woff");
+}
+
+@font-face {
+  font-family: "DM Sans";
+  font-style: italic;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url("./assets/fonts/DMSans-Italic-VariableFont_opszwght.woff") format("woff");
+}
+
+/* =========================
+   VARIABLES
+   ========================= */
+
+:root {
+  --background-grey: #f5f5f5;
+  --primary-black: #0d0d0d;
+  --primary-purple: #7651dc;
+  --primary-white: #ffffff;
+  --primary-yellow: #ffcc68;
+
+  --light-yellow: hsl(31, 66%, 93%);
+  --light-purple: hsl(254, 88%, 90%);
+
+  --font-family-body: "DM Sans", sans-serif;
+
+  /* Colores que cambian con el tema */
+  --texto: var(--primary-black);
+  --superficie: var(--primary-white);
+
+  /* Botón de tema */
+  --boton-borde: rgba(13, 13, 13, 0.15);
+}
+
+/* Tema oscuro */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --background-grey: #121214;
+  --texto: #f2f2f2;
+  --superficie: #1f1f26;
+
+  --light-yellow: hsl(31, 45%, 86%); 
+  --light-purple: hsl(254, 30%, 25%);
+
+  --boton-borde: rgba(255, 255, 255, 0.2);
+}
+
+/* ESTILOS GENERALES */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 60px 24px;
+
+  background-color: var(--background-grey);
+  color: var(--texto);
+
+  font-family: var(--font-family-body);
+  font-size: 18px;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1,
+h2 {
+  font-optical-sizing: none;
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -1.5px;
+}
+
+h2 {
+  font-size: 28px;
+}
+
+p {
+  line-height: 1.15;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* BOTÓN DE TEMA */
+
+.barra {
+  display: flex;
+  justify-content: flex-end;
+
+  width: 100%;
+  max-width: 1010px;
+  margin: 0 auto 24px;
+}
+
+.boton-tema {
+  padding: 10px 20px;
+
+  background-color: var(--superficie);
+  color: var(--texto);
+  border: 1px solid var(--boton-borde);
+  border-radius: 999px;
+
+  font: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.boton-tema:hover {
+  border-color: var(--primary-purple);
+}
+
+.boton-tema:focus-visible {
+  outline: 3px solid var(--primary-purple);
+  outline-offset: 2px;
+}
+
+/* 
+   CUADRÍCULA PRINCIPAL
+   4 columnas x 10 filas */
+
+.bento {
+  width: 100%;
+  max-width: 1010px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(10, 53px);
+  gap: 30px;
+
+  grid-template-areas:
+    "crear    principal   principal   programar"
+    "crear    principal   principal   programar"
+    "crear    principal   principal   programar"
+    "crear    principal   principal   programar"
+    "crear    cuentas     calendario  programar"
+    "escribir cuentas     calendario  programar"
+    "escribir cuentas     calendario  programar"
+    "escribir crecimiento seguidores  seguidores"
+    "escribir crecimiento seguidores  seguidores"
+    "escribir crecimiento seguidores  seguidores";
+}
+
+.tarjeta {
+  min-width: 0;
+  color: var(--texto);
+  padding: 22px;
+
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* TARJETA PRINCIPAL */
+
+.principal {
+  grid-area: principal;
+
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 18px;
+
+  padding: 24px;
+
+  background-color: var(--primary-purple);
+  color: var(--primary-white);
+
+  text-align: center;
+}
+
+.principal h1 {
+  font-size: 50px;
+  line-height: 1;
+}
+
+.principal span {
+  color: var(--primary-yellow);
+}
+
+.principal img {
+  width: 190px;
+}
+
+.principal p {
+  font-size: 17px;
+  opacity: 0.85;
+}
+
+/*  CUENTAS Y PLATAFORMAS */
+
+.cuentas {
+  grid-area: cuentas;
+  background-color: var(--superficie);
+}
+
+.cuentas img {
+  width: 310px;
+  max-width: none;
+  margin-bottom: 14px;
+}
+
+.cuentas h2 {
+  font-size: 26px;
+  letter-spacing: -1px;
+}
+
+/* CALENDARIO */
+
+.calendario {
+  grid-area: calendario;
+  background-color: var(--primary-yellow);
+  color: var(--primary-black);
+}
+
+.calendario h2 {
+  margin-bottom: 12px;
+  font-size: 27px;
+  letter-spacing: -1px;
+}
+
+.calendario img {
+  width: 100%;
+}
+
+/* PROGRAMAR PUBLICACIONES */
+
+.programar {
+  grid-area: programar;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: 20px;
+
+  padding-top: 28px;
+
+  background-color: var(--light-purple);
+}
+
+.programar h2 {
+  font-size: 30px;
+}
+
+.programar img {
+  width: 330px;
+  max-width: none;
+}
+
+.programar p {
+  font-size: 17px;
+}
+
+/* SEGUIDORES */
+
+.seguidores {
+  grid-area: seguidores;
+
+  display: grid;
+  grid-template-columns: 45% 1fr;
+  align-items: center;
+  gap: 20px;
+
+  background-color: var(--primary-purple);
+  color: var(--primary-white);
+}
+
+.seguidores h2 {
+  font-size: 34px;
+}
+
+/* CRECIMIENTO */
+
+.crecimiento {
+  grid-area: crecimiento;
+  background-color: var(--superficie);
+}
+
+.crecimiento h2 {
+  margin-bottom: 8px;
+  font-size: 56px;
+}
+
+.crecimiento p {
+  margin-bottom: 18px;
+  font-size: 17px;
+}
+
+.crecimiento img {
+  width: 175px;
+}
+
+/* CREAR CONTENIDO */
+
+.crear {
+  grid-area: crear;
+
+  display: grid;
+  align-content: center;
+  gap: 24px;
+
+  background-color: var(--light-yellow);
+  color: var(--primary-black);
+}
+
+.crear h2 {
+  font-size: 36px;
+}
+
+.crear em {
+  color: var(--primary-purple);
+}
+
+.crear img {
+  width: 190px;
+}
+
+
+.escribir {
+  grid-area: escribir;
+
+  display: grid;
+  align-content: space-between;
+  gap: 20px;
+
+  background-color: var(--primary-yellow);
+  color: var(--primary-black);
+}
+
+.escribir h2 {
+  font-size: 36px;
+}
+
+.escribir img {
+  width: 100%;
+}
+
+/* TABLET */
+
+@media (max-width: 1000px) {
+  body {
+    padding: 40px 24px;
+  }
+
+  .barra {
+    max-width: 760px;
+  }
+
+  .bento {
+    max-width: 760px;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: auto;
+    gap: 24px;
+
+    grid-template-areas:
+      "principal  principal"
+      "cuentas    calendario"
+      "escribir   programar"
+      "crear      crecimiento"
+      "seguidores seguidores";
+  }
+
+  .principal {
+    padding: 40px 24px;
+  }
+
+  .principal h1 {
+    font-size: 48px;
+  }
+
+  .cuentas {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .cuentas img {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .calendario {
+    height: 260px;
+  }
+
+  .calendario img {
+    width: 100%;
+  }
+
+  .programar img {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .crecimiento {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .crecimiento img {
+    margin-top: auto;
+  }
+
+  .escribir img {
+    width: 100%;
+    max-width: 300px;
+    justify-self: center;
+  }
+}
+
+/* =========================
+   MÓVIL (hasta 639px)
+   1 columna
+   ========================= */
+
+@media (max-width: 639px) {
+  body {
+    padding: 24px 16px;
+  }
+
+  .barra {
+    max-width: 540px;
+    margin-bottom: 16px;
+  }
+
+  .bento {
+    max-width: 540px;
+
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+
+    grid-template-areas:
+      "principal"
+      "cuentas"
+      "calendario"
+      "programar"
+      "seguidores"
+      "crecimiento"
+      "crear"
+      "escribir";
+  }
+
+  .principal h1 {
+    font-size: 40px;
+  }
+
+  .programar {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .calendario {
+    height: 240px;
+  }
+
+  .calendario h2 {
+    max-width: 300px;
+  }
+
+  .calendario img {
+    width: 220px;
+  }
+
+  .seguidores {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 32px;
+
+    text-align: center;
+  }
+
+  .seguidores img {
+    width: 230px;
+  }
+
+  .seguidores h2 {
+    max-width: 300px;
+  }
+
+  .escribir img {
+    width: 220px;
+    max-width: none;
+    justify-self: stretch;
+  }
+}
+ 
