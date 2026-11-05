@@ -3,7 +3,7 @@
    Tokens de diseño + reset mínimo.
    NO es necesario modificar este archivo: úsalo con var(--nombre)
    ========================================================= */
-
+ 
 :root {
   /* ---------- Color ---------- */
   --color-fondo: #f2f6f7; /* fondo de página */
@@ -22,12 +22,19 @@
   --sol-hover: color-mix(in srgb, var(--color-sol) 80%, var(--color-tinta));
   --ola-hover: color-mix(in srgb, var(--color-ola) 75%, var(--color-tinta));
   --oscuro-hover: var(--color-tinta-suave);
-
-
+ 
+  /* Zonas que son oscuras en AMBOS temas (hero, pie, botones oscuros...) */
+  --bloque-oscuro: #14213d;
+  --texto-sobre-oscuro: #ffffff;
+  --texto-sobre-oscuro-suave: #d5dee3;
+  --linea-sobre-oscuro: #4a5878;
+  --hero-fondo: var(--bloque-oscuro);
+ 
+ 
   /* ---------- Tipografía ---------- */
   --fuente-titulo: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
   --fuente-texto: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-
+ 
   --texto-xs: 0.8rem;
   --texto-s: 0.9rem;
   --texto-m: 1rem;
@@ -35,11 +42,11 @@
   --texto-xl: 1.75rem;
   --texto-2xl: 2.5rem;
   --texto-3xl: clamp(2.5rem, 7vw, 4.5rem); /* título del hero */
-
+ 
   --peso-normal: 400;
   --peso-fuerte: 700;
   --peso-negro: 800;
-
+ 
   /* ---------- Espaciado (escala de 8px) ---------- */
   --espacio-1: 0.25rem;
   --espacio-2: 0.5rem;
@@ -49,28 +56,37 @@
   --espacio-6: 3rem;
   --espacio-7: 4.5rem;
   --espacio-8: 6rem;
-
+ 
   /* ---------- Forma ---------- */
   --radio-s: 6px;
   --radio-m: 14px;
   --radio-pildora: 999px;
-
+ 
   --sombra-suave: 0 2px 8px rgba(20, 33, 61, 0.08);
   --sombra-fuerte: 0 12px 32px rgba(20, 33, 61, 0.18);
-
+ 
   /* ---------- Layout ---------- */
   --ancho-contenedor: 1100px;
   --alto-cabecera: 72px;
-
+ 
   /* ---------- Movimiento ---------- */
   --transicion: 180ms ease;
 }
-
-/* Nota: las variables CSS NO funcionan dentro de @media (...).
-   Puntos de ruptura de la práctica:
-     móvil   → hasta 639px
-     tablet  → desde 640px
-     escritorio → desde 960px                                   */
+ 
+/* ---------- Tema oscuro (se activa con data-theme="dark" en <html>) ---------- */
+:root[data-theme="dark"] {
+  --color-fondo: #0b1220;
+  --color-superficie: #16213a;
+  --color-tinta: #f2f6f7;
+  --color-tinta-suave: #a9b6d0;
+  --color-borde: #2c3a5c;
+  --sol-hover: color-mix(in srgb, var(--color-sol) 80%, #000);
+  --ola-hover: color-mix(in srgb, var(--color-ola) 75%, #000);
+  --oscuro-hover: #4a5878;
+  --sombra-fuerte: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --hero-fondo: #1f3566;
+}
+ 
 
 /* ---------- Reset mínimo ---------- */
 *,
@@ -80,11 +96,11 @@
   margin: 0;
   padding: 0;
 }
-
+ 
 html {
   font-size: 100%;
 }
-
+ 
 body {
   font-family: var(--fuente-texto);
   font-size: var(--texto-m);
@@ -92,35 +108,37 @@ body {
   color: var(--color-tinta);
   background: var(--color-fondo);
 }
-
+ 
 img {
   max-width: 100%;
   display: block;
 }
-
+ 
 ul {
   list-style: none;
 }
-
+ 
 a {
   color: inherit;
   text-decoration: none;
 }
-
+ 
 h1,
 h2,
 h3 {
   font-family: var(--fuente-titulo);
   line-height: 1.15;
 }
-
+ 
 button {
   font: inherit;
   cursor: pointer;
   border: 0;
 }
-
+ 
 :focus-visible {
   outline: 3px solid var(--color-ola);
   outline-offset: 2px;
 }
+ 
+ 
